@@ -1,0 +1,12 @@
+
+
+
+%Magnet collibration 
+%'D4FL2XTDS'
+% information 
+
+Field= getfield('FLASH.MAGNETS/MAGNET.ML/D4FL2XTDS/FIELD.SP', data)
+STRENGTH=getfield('FLASH.MAGNETS/MAGNET.ML/D4FL2XTDS/STRENGTH.SP', data)
+kick=getfield('FLASH.MAGNETS/MAGNET.ML/D4FL2XTDS/KICK.SP', data)
+
+current=('FLASH.MAGNETS/MAGNET.ML/D4FL2XTDS/CURRENT.SP', data)
