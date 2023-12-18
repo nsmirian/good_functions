@@ -1,6 +1,6 @@
 
 # collectind data for compressions and BAMs
-# fisrst step of VFD project,
+# first step of VFD project,
 # Najmeh Mitian 18 Dec 2023
 
 import time
