@@ -9,10 +9,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # preperation of vectors
-nshot=2000
+nshot=1000
 
-
+addr_cam        = 'FLASH.DIAG/CAMERA/OTR9FL2XTDS/IMAGE_EXT_ZMQ';
 compressionTD11='FLASH.SDIAG/BCM/FL0.DBC1.1/COMPRESSION.normalized.TD'
+#img(:,:,jj)     = ddd_read.data.val_val;
 com11=pydoocs.read(compressionTD11)
 a,b=com11['data'].shape
 com11=np.zeros([a,b,nshot])
@@ -73,6 +74,8 @@ for n in range(nshot):
 
     bamuBC1[:,:, n]=pydoocs.read(BAMUBC1)['data']
     bamuseed5[:,:, n]=pydoocs.read(BAMUBCseed5)['data']
+     time.sleep( 0.1 )
+     print(n)
     ## camera image
 
 hf = h5py.File('data.h5', 'w')
