@@ -65,17 +65,25 @@ cam_img=np.zeros([1776,2360,nshot])
 
 for n in range(nshot):
     com11[:,:, n]=pydoocs.read(compressionTD11)['data']
+    #com11_timespam[n]=pydoocs.read(compressionTD11)['timestamp']
     com12[:,:, n]=pydoocs.read(compressionTD12)['data']
+    #com12_timespam[n]=pydoocs.read(compressionTD12)['timestamp']
     #com21[:,:, n]=pydoocs.read(compressionTD21)['data']
+    #com21_timespam[n]=pydoocs.read(compressionTD21)['timestamp']
     #com22[:,:, n]=pydoocs.read(compressionTD22)['data']
+    #com22_timespam[n]=pydoocs.read(compressionTD22)['timestamp']
     com51[:,:, n]=pydoocs.read(compressionTD51)['data']
+    #com51_timespam[n]=pydoocs.read(compressionTD51)['timestamp']
     com52[:,:, n]=pydoocs.read(compressionTD52)['data']
+    #com52_timespam[n]=pydoocs.read(compressionTD52)['timestamp']
 
-    bamuBC1[:,:, n]=pydoocs.read(BAMUBC1)['data']
-    bamuseed5[:,:, n]=pydoocs.read(BAMseed5)['data']
+    bamuBC1[:,:, n]     =pydoocs.read(BAMUBC1)['data']
+    #bamuBC1_timespam[n]=pydoocs.read(BAMUBC1)['timestamp']
+    bamuseed5[:,:, n]   =pydoocs.read(BAMseed5)['data']
+    #bamuBC1_timespam[n]=pydoocs.read(BAMseed5)['timestamp']
     
     cam_img[:,:, n]=pydoocs.read(addr_cam)['data']
-    timespam_img[n]=pydoocs.read(addr_cam)['timestamp']
+    cam_img_timespam[n]=pydoocs.read(addr_cam)['timestamp']
     
     time.sleep( 0.1 )
     print(n)
