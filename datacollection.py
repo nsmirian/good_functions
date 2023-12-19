@@ -1,6 +1,6 @@
 
-# collectind data for compressions and BAMs
-# first step of VFD project,
+# Collect data for compressions and BAMs
+# First step of VFD project,
 # Najmeh Mitian 18 Dec 2023
 
 import time
@@ -18,6 +18,7 @@ compressionTD11='FLASH.SDIAG/BCM/FL0.DBC1.1/COMPRESSION.normalized.TD'
 com11=pydoocs.read(compressionTD11)
 a,b=com11['data'].shape
 com11=np.zeros([a,b,nshot])
+com11_timespam==np.zeros([nshot])
 ##
 compressionTD12='FLASH.SDIAG/BCM/FL0.DBC1.2/COMPRESSION.normalized.TD'
 com12=pydoocs.read(compressionTD12)
@@ -27,14 +28,17 @@ compressionTD21='FLASH.SDIAG/BCM/FL0.DBC2.1/COMPRESSION.normalized.TD'
 #com21=pydoocs.read(compressionTD21)
 #a,b=com21['data'].shape
 com21=np.zeros([a,b,nshot])
+com21_timespam==np.zeros([nshot])
 ##
 #
 ##
 compressionTD22='FLASH.SDIAG/BCM/FL0.DBC2.2/COMPRESSION.normalized.TD'
 #com22=pydoocs.read(compressionTD22)
+#com22_timespam==np.zeros([nshot])
 
 #a,b=com22['data'].shape
 com22=np.zeros([a,b,nshot])
+com22_timespam==np.zeros([nshot])
 #plt.plot(S21['data'][1:,0], S21['data'][1:,1], '.')
 #plt.plot(S22['data'][1:,0], S22['data'][1:,1], '.')
 
@@ -42,21 +46,25 @@ compressionTD51='FLASH.SDIAG/BCM/FL2.SEED5.1/COMPRESSION.normalized.TD'
 com51=pydoocs.read(compressionTD51)
 a,b=com51['data'].shape
 com51=np.zeros([a,b,nshot])
+com51_timespam==np.zeros([nshot])
 ##
 compressionTD52='FLASH.SDIAG/BCM/FL2.SEED5.2/COMPRESSION.normalized.TD'
 com52=pydoocs.read(compressionTD52)
 a,b=com52['data'].shape
 com52=np.zeros([a,b,nshot])
+com52_timespam==np.zeros([nshot])
 #
 BAMUBC1='FLASH.SDIAG/BAM/FL0.UBC1/ARRIVAL_TIME.relative.TD'
 bamuBC1=pydoocs.read(BAMUBC1)
 a,b=bamuBC1['data'].shape
 bamuBC1=np.zeros([a,b,nshot])
+bamuBC1_timespam==np.zeros([nshot])
 
 BAMseed5='FLASH.SDIAG/BAM/FL2.SEED5/ARRIVAL_TIME.relative.TD'
 bamuseed5=pydoocs.read(BAMseed5)
 a,b=bamuseed5['data'].shape
 bamuseed5=np.zeros([a,b,nshot])
+bamuseed5_timespam==np.zeros([nshot])
 
 #### cammper , do not forget
 cammeraT=''
@@ -80,7 +88,7 @@ for n in range(nshot):
     bamuBC1[:,:, n]     =pydoocs.read(BAMUBC1)['data']
     #bamuBC1_timespam[n]=pydoocs.read(BAMUBC1)['timestamp']
     bamuseed5[:,:, n]   =pydoocs.read(BAMseed5)['data']
-    #bamuBC1_timespam[n]=pydoocs.read(BAMseed5)['timestamp']
+    #bamuseed5_timespam[n]=pydoocs.read(BAMseed5)['timestamp']
     
     cam_img[:,:, n]=pydoocs.read(addr_cam)['data']
     cam_img_timespam[n]=pydoocs.read(addr_cam)['timestamp']
