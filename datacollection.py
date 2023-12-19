@@ -88,7 +88,7 @@ for n in range(nshot):
     bamuBC1[:,:, n]     =pydoocs.read(BAMUBC1)['data']
     #bamuBC1_timespam[n]=pydoocs.read(BAMUBC1)['timestamp']
     bamuseed5[:,:, n]   =pydoocs.read(BAMseed5)['data']
-    #bamuseed5_timespam[n]=pydoocs.read(BAMseed5)['timestamp']
+    bamuseed5_timespam[n]=pydoocs.read(BAMseed5)['timestamp']
     
     cam_img[:,:, n]=pydoocs.read(addr_cam)['data']
     cam_img_timespam[n]=pydoocs.read(addr_cam)['timestamp']
@@ -96,18 +96,73 @@ for n in range(nshot):
     time.sleep( 0.1 )
     print(n)
     ## camera image
+data_dict = {
+    '1': {
+        'com11': com11,
+        'com12': com12,
+        'com11_timespam': com11_timespam,
+        'com12_timespam': com12_timespam,
+        },
+    '2': {
+        'com21': com21,
+        'com22': com22,
+        'com21_timespam': com21_timespam,
+        'com22_timespam': com22_timespam,
+        }
+   
+    '5': {
+        'com51': com51,
+        'com52': com52,
+        'com51_timespam': com51_timespam,
+        'com52_timespam': com52_timespam,
+        }
+     'bams': {
+        'bamuBC1': bamuBC1,
+        'bamuseed5': bamuseed5,
+        'bamuBC1_timespam': bamuBC1_timespam,
+        'bamuseed5_timespam': bamuseed5_timespam,
+        }
+    'camera_image': {
+        'cam_img': cam_img,
+        'cam_img_timespam': cam_img_timespam,
+        }
 
-hf = h5py.File('data.h5', 'w')
-hf.create_dataset('com11', data=com11)
-hf.create_dataset('com12', data=com12)
-hf.create_dataset('com21', data=com21)
-hf.create_dataset('com22', data=com22)
-hf.create_dataset('com51', data=com51)
-hf.create_dataset('com52', data=com52)
-
-hf.create_dataset('bamuBC1', data=bamuBC1)
-hf.create_dataset('bamuseed5', data=bamuseed5)
+}
 
 
+#######################################################################
+##### Open HDF5 file and write in the data_dict structure and info
+f = h5py.File('data.hdf5', 'w')
+for grp_name in data_dict:
+    grp = f.create_group(grp_name)
+    for dset_name in data_dict[grp_name]:
+        dset = grp.create_dataset(dset_name, data = data_dict[grp_name][dset_name])
+        print(grp_name, dset_name, data_dict[grp_name][dset_name])
+f.close()
 
-hf.close()
+
+#hf = h5py.File('data.h5', 'w')
+#hf.create_dataset('com11', data=com11)
+#hf.create_dataset('com12', data=com12)
+#hf.create_dataset('com21', data=com21)
+#hf.create_dataset('com22', data=com22)
+#hf.create_dataset('com51', data=com51)
+#hf.create_dataset('com52', data=com52)
+
+#hf.create_dataset('bamuBC1', data=bamuBC1)
+#hf.create_dataset('bamuseed5', data=bamuseed5)
+
+
+
+#hf.close()
+
+
+# #####Re-open HDF5 file and read out the data_dict structure and info
+#f = h5py.File('test.hdf5', 'r')
+#for grp_name in data_dict:
+#    for dset_name in data_dict[grp_name]:
+#        if '_array' in dset_name:
+ #           print(grp_name, dset_name, f[grp_name][dset_name][:])
+ #       if '_scalar' in dset_name:
+ #           print(grp_name, dset_name, f[grp_name][dset_name][()])
+#f.close()
