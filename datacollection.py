@@ -8,9 +8,13 @@ import pydoocs
 import numpy as np
 import matplotlib.pyplot as plt
 import h5py
+from datetime import datetime
+
 
 # preperation of vectors
 nshot=3000
+timespam = datetime.now()
+filename=[timespam 'hdf5']
 
 
 chageaddr='FLASH.DIAG/TOROID/7FL2XTDS/CHARGE.FLASH2'
@@ -164,7 +168,7 @@ data_dict = {
 
 #######################################################################
 ##### Open HDF5 file and write in the data_dict structure and info
-f = h5py.File('data3000_jan9_2.hdf5', 'w')
+f = h5py.File(filename, 'w')
 for grp_name in data_dict:
     grp = f.create_group(grp_name)
     for dset_name in data_dict[grp_name]:
