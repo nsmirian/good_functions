@@ -14,7 +14,11 @@ from datetime import datetime
 # preperation of vectors
 nshot=3000
 timespam = datetime.now()
-filename=[timespam 'hdf5']
+date_time = timespam.strftime("%m%d%Y%H%M%S")
+
+filename=(date_time+'.hdf5')
+
+
 
 
 chageaddr='FLASH.DIAG/TOROID/7FL2XTDS/CHARGE.FLASH2'
