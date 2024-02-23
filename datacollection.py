@@ -1,7 +1,7 @@
 
 # Collect data for compressions and BAMs
 # First step of VFD project,
-# Najmeh Mitian 18 Dec 2023
+# Najmeh Mitian 23 feb 2024
 
 import time
 import pydoocs
